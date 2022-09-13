@@ -1,9 +1,24 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.OrderManagement.Api", "Albelli.OrderManagement.Api\Albelli.OrderManagement.Api.csproj", "{E9B720A1-306A-4C61-98B8-CD44F85B5B5F}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.OrderManagement.Api", "Albelli.OrderManagement.Api\Albelli.OrderManagement.Api.csproj", "{E9B720A1-306A-4C61-98B8-CD44F85B5B5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.OrderManagement.Api.Tests", "Albelli.OrderManagement.Api.Tests\Albelli.OrderManagement.Api.Tests.csproj", "{8F1DF9B1-59E7-48AB-8B63-AB2FA67F82F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.OrderManagement.Api.Tests", "Albelli.OrderManagement.Api.Tests\Albelli.OrderManagement.Api.Tests.csproj", "{8F1DF9B1-59E7-48AB-8B63-AB2FA67F82F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B43B4AB4-146D-4FF6-9AB6-19F4583EF9DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4CB17006-4AFF-412F-9D83-1D8A1A4B219C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{72234615-6A69-4D65-BFE1-FFEA56490187}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C5AD19A-2C7F-4FAB-AC16-A5DE0166F579}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.OrderManagement.Application", "Albelli.OrderManagement.Application\Albelli.OrderManagement.Application.csproj", "{24843999-1111-452C-99E5-C24EA15DCB7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.OrderManagement.Domain", "Albelli.OrderManagement.Domain\Albelli.OrderManagement.Domain.csproj", "{B3CF89FA-384B-4B28-907E-E057C0CB3157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.OrderManagement.Api.Persistence", "Albelli.OrderManagement.Api.Persistence\Albelli.OrderManagement.Api.Persistence.csproj", "{3112FFF2-DD41-41CB-A8AA-E9E1E80410D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +34,30 @@ Global
 		{8F1DF9B1-59E7-48AB-8B63-AB2FA67F82F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F1DF9B1-59E7-48AB-8B63-AB2FA67F82F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F1DF9B1-59E7-48AB-8B63-AB2FA67F82F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24843999-1111-452C-99E5-C24EA15DCB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24843999-1111-452C-99E5-C24EA15DCB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24843999-1111-452C-99E5-C24EA15DCB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24843999-1111-452C-99E5-C24EA15DCB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CF89FA-384B-4B28-907E-E057C0CB3157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CF89FA-384B-4B28-907E-E057C0CB3157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CF89FA-384B-4B28-907E-E057C0CB3157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CF89FA-384B-4B28-907E-E057C0CB3157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3112FFF2-DD41-41CB-A8AA-E9E1E80410D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3112FFF2-DD41-41CB-A8AA-E9E1E80410D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3112FFF2-DD41-41CB-A8AA-E9E1E80410D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3112FFF2-DD41-41CB-A8AA-E9E1E80410D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E9B720A1-306A-4C61-98B8-CD44F85B5B5F} = {72234615-6A69-4D65-BFE1-FFEA56490187}
+		{8F1DF9B1-59E7-48AB-8B63-AB2FA67F82F8} = {7C5AD19A-2C7F-4FAB-AC16-A5DE0166F579}
+		{24843999-1111-452C-99E5-C24EA15DCB7F} = {B43B4AB4-146D-4FF6-9AB6-19F4583EF9DA}
+		{B3CF89FA-384B-4B28-907E-E057C0CB3157} = {B43B4AB4-146D-4FF6-9AB6-19F4583EF9DA}
+		{3112FFF2-DD41-41CB-A8AA-E9E1E80410D4} = {4CB17006-4AFF-412F-9D83-1D8A1A4B219C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1FEF91A-EF56-439B-9042-76BBCBCEC531}
 	EndGlobalSection
 EndGlobal
