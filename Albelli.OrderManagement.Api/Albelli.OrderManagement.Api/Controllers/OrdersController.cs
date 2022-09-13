@@ -1,84 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Albelli.OrderManagement.Api.Models;
-using Albelli.OrderManagement.Api.Repositories;
+using Albelli.OrderManagement.Application.OrderLines.Commands;
+using Albelli.OrderManagement.Application.Orders.Commands;
+using Albelli.OrderManagement.Application.Orders.Queries;
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Albelli.OrderManagement.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
-        private OrderRepository _orderRepository;
-        private ProductInfoRepository _productInfoRepository;
+        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
+        public OrdersController(IMapper mapper, IMediator mediator) => (_mapper, _mediator) = (mapper, mediator);
 
-        public OrdersController()
+        [HttpPost()]
+        public async Task<ActionResult<int>> PlaceOrder([FromBody] IEnumerable<OrderLineDto> orderLinesDto)
         {
-            _orderRepository = new OrderRepository();
-            _productInfoRepository = new ProductInfoRepository();
+            var orderLines = _mapper.Map<List<CreateOrderLineCommand>>(orderLinesDto);
+            var orderId = await _mediator.Send(new CreateOrderCommand() { Items = orderLines });
+
+            return Ok(orderId);
         }
 
-        [HttpPost("orders/place")]
-        public ActionResult PlaceOrder([FromBody] IEnumerable<OrderLine> items)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderViewModel>> GetOrderById(int id)
         {
-            try
-            {
-                var orderLines = items.ToList();
-                var order = new Order { Items = orderLines, MinPackageWidth = PackageWidth(orderLines) };
+            var query = new GetOrderQuery() { Id = id };
+            var vm = await _mediator.Send(query);
 
-                _orderRepository.Add(order);
-
-                return Ok(order);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
-        }
-
-        [HttpGet("order/{orderId}/retrieve")]
-        public async Task<IActionResult> RetrieveOrder(int orderId)
-        {
-            try
-            {
-                var order = _orderRepository.GetOrder(orderId);
-
-                if (order == null)
-                {
-                    throw new ArgumentException(orderId.ToString());
-                }
-
-                return Ok(order);
-            }
-            catch (ArgumentException ex)
-            {
-                return StatusCode(400, ex);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public double PackageWidth(IEnumerable<OrderLine> items)
-        {
-            double pw = 0;
-
-            foreach (var item in items)
-            {
-                var t = item.ProductType;
-                var q = item.Quantity;
-
-                var info = _productInfoRepository.Get(t);
-
-                pw += info.WidthMm * q;
-            }
-
-            return pw;
+            return Ok(vm);
         }
     }
 }
